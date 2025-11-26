@@ -35,10 +35,11 @@ import { ChevronDown } from "lucide-react";
 export const Route = createFileRoute("/__authenticated/form/dosis/$id")({
   component: RouteComponent,
   validateSearch: z.object({
-    kode: z.string(),
+    kode: z.string().optional(),
     id_reservoar: z.number(),
     jam: z.number(),
     nama: z.string(),
+    id_trans: z.number(),
   }),
 });
 
@@ -402,7 +403,10 @@ function RouteComponent() {
                             });
 
                             navigate({
-                              to: `/list-data/detail-dosis/${kode}?jam=${jam}`,
+                              to: `/pages/detail-dosis/${kode}`,
+                              search: {
+                                jam: Number(jam),
+                              },
                             });
                           },
                           onError: (error: unknown) => {

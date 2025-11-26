@@ -96,16 +96,25 @@ function RouteComponent() {
         }}
       />
       <TimeInfo />
-      <Total total={totalData} selesai={selesaiData} title="Pencucian" />
+      <Total
+        total={totalData}
+        selesai={selesaiData}
+        title={`Pencucian (Jam ${jam})`}
+      />
       <div className="flex flex-col gap-4">
         {mappedData.map((item, idx) => (
           <div
             onClick={() => {
-              // const route = specialRoutes[item.kode] || "detail";
               navigate({
-                to: `/form/cuci/input/${item.value}?id=${id}&kode=${kode}&jumlah=${item.jumlah}&jam=${Number(
-                  detailCuci?.data[0].jam
-                )}&id_wtp=${detailCuci?.data[0].id_wtp}&id_trans=${detailCuci?.data[0].id_trans}`,
+                to: `/form/cuci/input/${item.value}`,
+                search: {
+                  id: Number(id),
+                  kode,
+                  jumlah: item.jumlah,
+                  jam: Number(detailCuci?.data[0].jam),
+                  id_wtp: Number(detailCuci?.data[0].id_wtp),
+                  id_trans: Number(detailCuci?.data[0].id_trans),
+                },
               });
             }}
             key={idx}

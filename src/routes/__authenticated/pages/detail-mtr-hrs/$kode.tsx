@@ -80,7 +80,9 @@ function RouteComponent() {
       <button
         type="button"
         className="flex items-center justify-center w-full gap-2 py-2 mb-4 text-sm font-semibold text-white transition-colors rounded-md bg-primary hover:bg-primary/80"
-        onClick={() => navigate({ to: `/form/hours-pompa/${kode}?jam=${jam}` })}
+        onClick={() =>
+          navigate({ to: `/form/hours-pompa/${kode}`, search: { jam: jam } })
+        }
       >
         <PlusCircleIcon className="w-5 h-5" strokeWidth={5} />
         Catat Hours Meter Pompa

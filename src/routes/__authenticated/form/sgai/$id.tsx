@@ -32,7 +32,7 @@ import { listSungaiQuery } from "../../../../queries/sungai/list-sungai";
 export const Route = createFileRoute("/__authenticated/form/sgai/$id")({
   component: RouteComponent,
   validateSearch: z.object({
-    kode: z.string(),
+    kode: z.string().optional(),
     id_sungai: z.number(),
     jam: z.number(),
     id_trans: z.number(),
@@ -320,7 +320,10 @@ function RouteComponent() {
                               queryKey: ["fetchLastActivity", id_petugas],
                             });
                             navigate({
-                              to: `/list-data/detail-sgai/${kode}?jam=${detailData?.data[0].jam}`,
+                              to: `/pages/detail-sgai/${kode}`,
+                              search: {
+                                jam: Number(jam),
+                              },
                             });
                           },
                           onError: (error: unknown) => {

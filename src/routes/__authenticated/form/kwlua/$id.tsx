@@ -502,7 +502,10 @@ function RouteComponent() {
                               queryKey: ["fetchLastActivity", id_petugas],
                             });
                             navigate({
-                              to: `/list-data/detail-kwl-ua/${kode_trans}?jam=${jam}`,
+                              to: `/pages/detail-kwl-ua/${kode_trans}`,
+                              search: {
+                                jam: Number(jam),
+                              },
                             });
                           },
                           onError: (error: unknown) => {

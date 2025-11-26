@@ -428,11 +428,13 @@ function RouteComponent() {
                               queryKey: ["fetchLastActivity", id_petugas],
                             });
                             navigate({
-                              to: `/list-data/detail/${kode}?jam=${detailData?.data[0]?.jam}${
-                                type && type !== "undefined"
-                                  ? `&type=${type}`
-                                  : ""
-                              }`,
+                              to: `/pages/detail/${kode}`,
+                              search: {
+                                jam: Number(jam),
+                                ...(type && type !== "undefined"
+                                  ? { type }
+                                  : {}),
+                              },
                             });
 
                             // }, 2000);

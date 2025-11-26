@@ -81,7 +81,7 @@ function RouteComponent() {
       <button
         className="flex items-center justify-center w-full gap-2 py-2 mb-4 text-sm font-semibold text-white transition-colors rounded-md bg-primary hover:bg-primary/80"
         onClick={() =>
-          navigate({ to: `/form/pakai-kantor/${kode}?jam=${jam}` })
+          navigate({ to: `/form/pakai-kantor/${kode}`, search: { jam } })
         }
       >
         <PlusCircleIcon className="w-5 h-5" strokeWidth={5} />
@@ -99,7 +99,14 @@ function RouteComponent() {
               waktuCatat={value.waktu_catat}
               onAction={() =>
                 navigate({
-                  to: `/form/pemakaian-kantor/${value.id}?jam=${jam}&kode=${kode}`,
+                  to: "/form/pemakaian-kantor/$id",
+                  params: {
+                    id: value.id,
+                  },
+                  search: {
+                    jam: Number(jam),
+                    kode,
+                  },
                 })
               }
             />

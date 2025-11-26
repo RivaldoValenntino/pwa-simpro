@@ -362,7 +362,10 @@ function RouteComponent() {
                             ],
                           });
                           navigate({
-                            to: `/list-data/detail-mtr-hrs/${kode}?jam=${jam}`,
+                            to: `/pages/detail-mtr-hrs/${kode}`,
+                            search: {
+                              jam: Number(jam),
+                            },
                           });
                         },
                         onError: (error: unknown) => {

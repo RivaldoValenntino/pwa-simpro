@@ -31,12 +31,13 @@ import CameraWithZoom from "../../../../components/camera-with-zoom";
 export const Route = createFileRoute("/__authenticated/form/pomp-amp/$id")({
   component: RouteComponent,
   validateSearch: z.object({
-    kode: z.string(),
+    kode: z.string().optional(),
     id_pompa: z.number(),
 
     jam: z.number(),
     id_trans: z.number(),
     jml_pompa: z.number(),
+    type: z.string().optional(),
   }),
 });
 
@@ -142,8 +143,13 @@ function RouteComponent() {
         queryKey: ["fetchLastActivity", id_petugas],
       });
       navigate({
-        to: `/list-data/detail-pomp-amp/${kode}?jam=${DetailData?.data?.jam}&type=${type}`,
+        to: `/pages/detail-pomp-amp/${kode}`,
+        search: {
+          jam: Number(jam),
+          type: type,
+        },
       });
+
       // }, 2000);
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

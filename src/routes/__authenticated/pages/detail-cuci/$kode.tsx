@@ -161,8 +161,18 @@ function RouteComponent() {
               // toast.success("Fitur ini masih dalam pengembangan");
               // } else {
               navigate({
-                to: `/form/cuci/${item.id}?id_wtp=${item.id_wtp}&kode=${kode}&jam=${jam}&id_trans=${item.id_trans}`,
+                to: "/form/cuci/$id",
+                params: {
+                  id: item.id,
+                },
+                search: {
+                  id_wtp: item.id_wtp,
+                  kode,
+                  jam,
+                  id_trans: item.id_trans,
+                },
               });
+
               // }
             }}
             onShowDetail={async (jenis) => {

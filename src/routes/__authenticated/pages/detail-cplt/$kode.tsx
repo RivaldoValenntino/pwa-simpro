@@ -157,8 +157,18 @@ function RouteComponent() {
                 //   toast.success("Fitur ini masih dalam pengembangan");
                 // } else {
                 navigate({
-                  to: `/form/cipolety/${item.id}?id_wtp=${item.id_wtp}&kode=${kode}&jam=${jam}&id_trans=${item.id_trans}`,
+                  to: "/form/cipolety/$id",
+                  params: {
+                    id: item.id,
+                  },
+                  search: {
+                    id_wtp: Number(item.id_wtp),
+                    kode,
+                    jam: Number(jam),
+                    id_trans: Number(item.id_trans),
+                  },
                 });
+
                 // }
               }}
               bgColor={bgColor}

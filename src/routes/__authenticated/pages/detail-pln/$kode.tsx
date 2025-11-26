@@ -174,7 +174,18 @@ function RouteComponent() {
               }
               onAction={() =>
                 navigate({
-                  to: `/form/meter-pln/${mtrpln.id}?type=${mtrpln.type}&jam=${jam}&kode_trans=${kode}&id_meter=${mtrpln.id_meter_pln}&total=${totalData}&selesai=${selesaiData}`,
+                  to: "/form/meter-pln/$id",
+                  params: {
+                    id: mtrpln.id,
+                  },
+                  search: {
+                    type: mtrpln.type,
+                    jam: Number(jam),
+                    kode_trans: kode,
+                    id_meter: Number(mtrpln.id_meter_pln),
+                    total: Number(totalData),
+                    selesai: Number(selesaiData),
+                  },
                 })
               }
               bgColor={

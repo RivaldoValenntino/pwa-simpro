@@ -4,15 +4,18 @@ import { listDataPenggunaanBahanKimiaQuery } from "../../queries/list-data-pengg
 import { useAuthStore } from "../../store/auth";
 import CardPenggunaanBahanKimia from "../../components/card-bahan-kimia";
 import BackButton from "../../components/back-button";
-
+import { z } from "zod";
 export const Route = createFileRoute("/__authenticated/penggunaan-bahan-kimia")(
   {
     component: RouteComponent,
+    validateSearch: z.object({
+      jenis: z.string().optional(),
+    }),
   }
 );
 
 function RouteComponent() {
-  const { kode } = useSearch({ strict: false });
+  const { jenis } = useSearch({ strict: false });
   const {
     data: ListData,
     isLoading,
@@ -22,7 +25,7 @@ function RouteComponent() {
     listDataPenggunaanBahanKimiaQuery(
       useAuthStore.getState().user?.id,
       new Date().toISOString().split("T")[0],
-      kode
+      jenis
     )
   );
 
@@ -63,7 +66,7 @@ function RouteComponent() {
       {/* Jika tidak loading dan data kosong */}
       {!isLoading && items.length === 0 && (
         <div className="flex flex-col items-center justify-center mt-24 text-gray-500">
-          <p className="mb-3">Tidak ada data penggunaan {kode}</p>
+          <p className="mb-3">Tidak ada data penggunaan {jenis}</p>
           <button
             onClick={() => refetch()}
             disabled={isFetching}

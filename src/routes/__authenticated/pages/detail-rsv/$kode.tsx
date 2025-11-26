@@ -145,7 +145,16 @@ function RouteComponent() {
               }
               onAction={() =>
                 navigate({
-                  to: `/form/rsv/${rsv.id}?kode=${kode}&id_reservoar=${rsv.id_reservoar}&jam=${rsv.jam}&id_trans=${rsv.id_trans}`,
+                  to: "/form/rsv/$id",
+                  params: {
+                    id: rsv.id,
+                  },
+                  search: {
+                    kode,
+                    id_reservoar: Number(rsv.id_reservoar),
+                    jam: Number(jam),
+                    id_trans: Number(rsv.id_trans),
+                  },
                 })
               }
               bgColor={

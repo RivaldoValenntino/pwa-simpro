@@ -352,9 +352,11 @@ function RouteComponent() {
                               queryClient.invalidateQueries({
                                 queryKey: ["fetchLastActivity", id_petugas],
                               });
-
                               navigate({
-                                to: `/list-data/detail-cplt/${kode}?jam=${jam}`,
+                                to: `/pages/detail-cplt/${kode}`,
+                                search: {
+                                  jam: Number(jam),
+                                },
                               });
                             },
                             onError: (error: unknown) => {

@@ -110,8 +110,14 @@ function RouteComponent() {
       console.log(res);
       setShowConfirmModal(false);
       navigate({
-        to: `/list-data/detail-cuci/${kode}?jam=${jam}`,
+        to: `/pages/detail-cuci/${kode}`,
+        search: {
+          jam: Number(jam),
+        },
       });
+      // navigate({
+      //   to: `/list-data/detail-cuci/${kode}?jam=${jam}`,
+      // });
       toast.success("Data berhasil disimpan");
     },
     onError: (err) => {

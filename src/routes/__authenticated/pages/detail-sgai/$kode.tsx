@@ -144,7 +144,16 @@ function RouteComponent() {
               }
               onAction={() =>
                 navigate({
-                  to: `/form/sgai/${sgai.id}?kode=${kode}&id_sungai=${sgai.id_sungai}&jam=${sgai.jam}&id_trans=${sgai.id_trans}`,
+                  to: "/form/sgai/$id",
+                  params: {
+                    id: sgai.id,
+                  },
+                  search: {
+                    kode,
+                    id_sungai: Number(sgai.id_sungai),
+                    jam: Number(jam),
+                    id_trans: Number(sgai.id_trans),
+                  },
                 })
               }
               bgColor={

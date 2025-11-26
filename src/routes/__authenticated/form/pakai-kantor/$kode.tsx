@@ -346,7 +346,10 @@ function RouteComponent() {
                               ],
                             });
                             navigate({
-                              to: `/list-data/detail-pakai-kntr/${kode}?jam=${jam}`,
+                              to: `/pages/detail-pakai-kntr/${kode}`,
+                              search: {
+                                jam: Number(jam),
+                              },
                             });
                             // }, 2000);
                           },

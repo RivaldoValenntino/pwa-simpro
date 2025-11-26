@@ -338,7 +338,7 @@ const AnomaliTable: React.FC<Props> = ({ data, isLoading, isFetching }) => {
                           <img
                             src={value}
                             alt={key}
-                            className="w-24 h-24 mx-auto border rounded-md cursor-pointer hover:opacity-80 transition"
+                            className="w-24 h-24 mx-auto transition border rounded-md cursor-pointer hover:opacity-80"
                             onClick={() => {
                               setLightboxImage(value);
                               setLightboxOpen(true);
@@ -519,10 +519,7 @@ const AnomaliTable: React.FC<Props> = ({ data, isLoading, isFetching }) => {
                           useAuthStore.getState().user?.id,
                         ],
                       });
-                      queryClient.invalidateQueries({
-                        queryKey: ["listAnomaliQuery"],
-                        exact: false,
-                      });
+                      window.location.reload();
 
                       // }, 2000);
                     },

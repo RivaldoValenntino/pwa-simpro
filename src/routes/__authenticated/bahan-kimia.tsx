@@ -43,7 +43,7 @@ function RouteComponent() {
                 key={idx}
                 className="flex flex-col items-center p-3 text-center bg-white rounded-md shadow-none cursor-pointer"
               >
-                <div className="flex items-center justify-center mb-2 rounded-lg bg-blue-50 w-12 h-12">
+                <div className="flex items-center justify-center w-12 h-12 mb-2 rounded-lg bg-blue-50">
                   <item.icon className="w-6 h-6 text-blue-600" />
                 </div>
 
@@ -61,7 +61,10 @@ function RouteComponent() {
                     className="w-full py-2 text-xs font-semibold text-gray-700 rounded-md bg-greenCust"
                     onClick={() => {
                       navigate({
-                        to: `/penggunaan-bahan-kimia?kode=${item.kode}`,
+                        to: `/penggunaan-bahan-kimia`,
+                        search: {
+                          jenis: item.kode,
+                        },
                       });
                     }}
                   >

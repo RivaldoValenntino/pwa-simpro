@@ -355,8 +355,14 @@ function RouteComponent() {
                               queryKey: ["fetchLastActivity", id_petugas],
                             });
                             navigate({
-                              to: `/list-data/detail-kimia/${kode}?jam=${jam}`,
+                              to: `/pages/detail-kimia/${kode}`,
+                              search: {
+                                jam: Number(jam),
+                              },
                             });
+                            // navigate({
+                            //   to: `/list-data/detail-kimia/${kode}?jam=${jam}`,
+                            // });
                           },
                           onError: (error: unknown) => {
                             console.error("Gagal menyimpan data:", error);

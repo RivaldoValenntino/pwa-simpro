@@ -350,7 +350,10 @@ function RouteComponent() {
                         ],
                       });
                       navigate({
-                        to: `/list-data/detail-gnst/${kode}?jam=${jam}`,
+                        to: `/pages/detail-gnst/${kode}`,
+                        search: {
+                          jam: Number(jam),
+                        },
                       });
                     },
                     onError: (error: unknown) => {

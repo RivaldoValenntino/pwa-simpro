@@ -32,7 +32,7 @@ import CameraWithZoom from "../../../../components/camera-with-zoom";
 export const Route = createFileRoute("/__authenticated/form/wtp-debt/$id")({
   component: RouteComponent,
   validateSearch: z.object({
-    kode: z.string(),
+    kode: z.string().optional(),
     id_wtp: z.number(),
     jam: z.number(),
     id_trans: z.number(),
@@ -314,7 +314,10 @@ function RouteComponent() {
                               queryKey: ["fetchLastActivity", id_petugas],
                             });
                             navigate({
-                              to: `/list-data/detail-wtp-debt/${kode}?jam=${detailData?.data[0].jam}`,
+                              to: `/pages/detail-wtp-debt/${kode}`,
+                              search: {
+                                jam: Number(jam),
+                              },
                             });
                           },
                           onError: (error: unknown) => {

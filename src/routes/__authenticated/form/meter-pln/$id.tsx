@@ -33,7 +33,7 @@ import CameraWithZoom from "../../../../components/camera-with-zoom";
 export const Route = createFileRoute("/__authenticated/form/meter-pln/$id")({
   component: RouteComponent,
   validateSearch: z.object({
-    kode_trans: z.string(),
+    kode_trans: z.string().optional(),
     id_meter: z.number(),
     jam: z.number(),
     type: z.string(),
@@ -344,9 +344,11 @@ function RouteComponent() {
                             queryClient.invalidateQueries({
                               queryKey: ["fetchLastActivity", id_petugas],
                             });
-
                             navigate({
-                              to: `/list-data/detail-pln/${kode_trans}?jam=${jam}`,
+                              to: `/pages/detail-pln/${kode_trans}`,
+                              search: {
+                                jam: Number(jam),
+                              },
                             });
                           },
                           onError: (error: unknown) => {

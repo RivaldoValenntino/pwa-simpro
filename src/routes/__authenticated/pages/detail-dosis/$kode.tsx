@@ -140,7 +140,17 @@ function RouteComponent() {
                 }
                 onAction={() =>
                   navigate({
-                    to: `/form/dosis/${dosis.id}?kode=${kode}&id_reservoar=${dosis.id_reservoar}&jam=${dosis.jam}&nama=${dosis.nama_reservoar}&id_trans=${dosis.id_trans}`,
+                    to: "/form/dosis/$id",
+                    params: {
+                      id: dosis.id,
+                    },
+                    search: {
+                      kode,
+                      id_reservoar: Number(dosis.id_reservoar),
+                      jam: Number(jam),
+                      nama: dosis.nama_reservoar,
+                      id_trans: Number(dosis.id_trans),
+                    },
                   })
                 }
                 bgColor={

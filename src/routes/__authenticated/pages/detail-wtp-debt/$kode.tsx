@@ -141,7 +141,16 @@ function RouteComponent() {
               }
               onAction={() =>
                 navigate({
-                  to: `/form/wtp-debt/${wtpdebt.id}?kode=${kode}&id_wtp=${wtpdebt.id_wtp}&jam=${wtpdebt.jam}&id_trans=${wtpdebt.id_trans}`,
+                  to: "/form/wtp-debt/$id",
+                  params: {
+                    id: wtpdebt.id,
+                  },
+                  search: {
+                    kode,
+                    id_wtp: Number(wtpdebt.id_wtp),
+                    jam: Number(jam),
+                    id_trans: Number(wtpdebt.id_trans),
+                  },
                 })
               }
               bgColor={

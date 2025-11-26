@@ -146,7 +146,18 @@ function RouteComponent() {
               }
               onAction={() =>
                 navigate({
-                  to: `/form/pomp-amp/${pompaamp.id}?kode=${kode}&id_pompa=${pompaamp.id_pompa}&jam=${pompaamp.jam}&id_trans=${pompaamp.id_trans}&jml_pompa=${Number(pompaamp.jml_pompa)}&type=${type || ""}`,
+                  to: "/form/pomp-amp/$id",
+                  params: {
+                    id: pompaamp.id,
+                  },
+                  search: {
+                    kode: kode,
+                    id_pompa: Number(pompaamp.id_pompa),
+                    jam: Number(jam),
+                    id_trans: Number(pompaamp.id_trans),
+                    jml_pompa: Number(pompaamp.jml_pompa),
+                    type: type,
+                  },
                 })
               }
               bgColor={
