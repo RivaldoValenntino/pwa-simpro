@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  tirta-kahuripan-pwa-app:
+    container_name: produksi-pwa-tirta-kahuripan
+    build:
+        context: .
+        dockerfile: Dockerfile
+    volumes:
+      - ./public:/app/public
+    ports:
+        - "30032:4173"
+    restart: always
+    # environment:
+    #   - APP_ENV=${APP_ENV}
+    #   - APP_URL=${APP_URL}
+    #   - APP_PORT=${APP_PORT}
+    #   - API_KEY=${API_KEY}
+    #   - DB_HOST=${DB_HOST}
+    #   - DB_PORT=${DB_PORT}
+    #   - DB_NAME=${DB_NAME}
+    #   - DB_USER=${DB_USER}
+    #   - DB_PASS=${DB_PASS}
+    #   - DB_HOST_BILL=${DB_HOST_BILL}
+    #   - DB_PORT_BILL=${DB_PORT_BILL}
+    #   - DB_NAME_BILL=${DB_NAME_BILL}
+    #   - DB_USER_BILL=${DB_USER_BILL}
+    #   - DB_PASS_BILL=${DB_PASS_BILL}
+    #   - JWT_SECRET=${JWT_SECRET}

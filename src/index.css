@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  display: none;
+}
+*:focus {
+  outline: none;
+}
+textarea {
+  resize: none;
+}
+body {
+  @apply overflow-y-auto bg-whiteCust font-poppins;
+}
+#index-body {
+  @apply relative mx-auto overflow-x-hidden overflow-y-auto;
+  background: linear-gradient(
+    to bottom,
+    rgba(48, 96, 255, 1) 20%,
+    rgba(238, 246, 254, 1) 40%
+  );
+  z-index: 0;
+}
+.lucide {
+  /* Change this! */
+  stroke-width: 1px;
+}
+.circle-decoration-right {
+  @apply absolute rounded-full;
+  top: -10%;
+  right: -13%;
+  width: 165px;
+  height: 165px;
+  background-color: rgba(31, 80, 245, 1);
+  z-index: -99;
+}
+
+.circle-decoration-left {
+  display: none;
+  @apply absolute rounded-full;
+  top: 34%;
+  left: -92px;
+  width: 270px;
+  height: 270px;
+  background: linear-gradient(
+    to bottom,
+    rgba(45, 95, 254, 0.3) 35%,
+    rgba(247, 246, 254, 1) 60%
+  );
+  transform: translateY(-30%);
+  z-index: 0;
+}
+
+#index-body > .content-layer {
+  position: relative;
+  z-index: 10;
+}
+
+.custom-gradient-shadow {
+  background: linear-gradient(to right, #e8e8e8, #ffffff);
+  -webkit-box-shadow: 8px 12px 8px 2px rgba(232, 232, 232, 0.5);
+  -moz-box-shadow: 8px 12px 8px 2px rgba(232, 232, 232, 0.5);
+  box-shadow: 8px 12px 8px 2px rgba(232, 232, 232, 0.5);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.glow-box {
+  /* background: linear-gradient(to right, #e8e8e8, #ffffff); */
+  -webkit-box-shadow: 0px 0px 65px 10px rgba(232, 232, 232, 1);
+  -moz-box-shadow: 0px 0px 65px 10px rgba(232, 232, 232, 1);
+  box-shadow: 0px 0px 65px 10px rgba(232, 232, 232, 1);
+}
+
+.cipolety-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cipolety-separator {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .cipolety-container {
+    flex-direction: row;
+  }
+  .cipolety-separator {
+    display: block;
+  }
+}
+
+.dosis-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .dosis-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* here we customize the transition, these are the shared styles for the old and new view*/
+::view-transition-new(root),
+::view-transition-old(root) {
+  animation-duration: 300ms;
+  animation-timing-function: ease-out;
+  animation-direction: normal;
+}
+
+/* old view slides out to the left */
+::view-transition-old(root) {
+  animation-name: slide-out;
+}
+
+/* new view slides in from the right */
+::view-transition-new(root) {
+  animation-name: slide-in;
+  mix-blend-mode: normal;
+}
+
+/* class "back-transition" is added to the html element 
+ * to customize the back transition 
+ * new view
+ */
+.back-transition::view-transition-new(root) {
+  animation-name: slide-out-reverse;
+}
+
+/* customized back transition for old view */
+.back-transition::view-transition-old(root) {
+  animation-name: slide-in-reverse;
+  mix-blend-mode: normal;
+  z-index: 1;
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-20%);
+  }
+}
+
+@keyframes slide-out-reverse {
+  from {
+    transform: translateX(-20%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-reverse {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+.yarl__navigation_prev,
+.yarl__navigation_next {
+  display: none !important;
+}
+@layer base {
+  .btn-eye-password {
+    @apply absolute text-xl text-gray-600 -translate-y-1/2 right-3 top-1/2 bottom-1/2;
+  }
+}

@@ -1,0 +1,36 @@
+image: php:7.4
+
+stages:
+  - dev
+  - prod
+
+deploy_development:
+  type: dev
+  environment:
+    name: deploymentdev
+    url: app.erpsystempdam.com/tirta-kahuripan/produksi-pwa
+  script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$keydevelopmentchrdo")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ssh -p 12244 development@165.22.111.13 "cd /home/development/public_html/tirta-kahuripan/produksi-pwa && git checkout development && git pull origin development && docker compose down && docker compose up -d --build && exit"
+  only:
+    - development
+
+
+deploy_tirtakahuripan:
+   type: prod
+   environment:
+     name: mainprod
+#     url: billing-app.tirtakahuripan.co.id
+   script:
+     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+     - eval $(ssh-agent -s)
+     - ssh-add <(echo "$PRODUKSI_PRODUCTION_SSH_PRIVATE_KEY")
+     - mkdir -p ~/.ssh
+     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+     - ssh kahuripan@38.47.184.78 "cd /home/kahuripan/public_html/tirta-kahuripan/produksi-pwa && git checkout main && git pull origin main && docker compose down && docker compose up -d --build && exit"
+   only:
+     - main
